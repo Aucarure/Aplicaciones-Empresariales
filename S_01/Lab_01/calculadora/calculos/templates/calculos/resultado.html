@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f3f3f3; text-align: center; }
+        .container { margin: 50px auto; padding: 20px; background: white; border-radius: 8px; width: 400px; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+        h2 { color: #333; }
+        p { font-size: 18px; margin: 10px 0; }
+        h3 { color: green; font-size: 22px; }
+        a { display: inline-block; margin-top: 20px; padding: 10px 20px; background: #007BFF; color: white; text-decoration: none; border-radius: 5px; }
+        a:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Resultado de la operación</h2>
+        <p><strong>Número 1:</strong> {{ n1 }}</p>
+        <p><strong>Número 2:</strong> {{ n2 }}</p>
+        <p><strong>Operación:</strong> {{ operacion }}</p>
+        <h3>Resultado: {{ resultado }}</h3>
+        <a href="{% url 'formulario' %}">Volver a la calculadora</a>
+    </div>
+</body>
+</html>

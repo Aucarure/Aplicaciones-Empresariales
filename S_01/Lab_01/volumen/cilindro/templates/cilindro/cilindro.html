@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calcular Volumen del Cilindro</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f3f3f3; text-align: center; }
+        .container { margin: 50px auto; padding: 20px; background: white; border-radius: 8px; width: 400px; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+        h2 { color: #333; }
+        form { margin-top: 20px; }
+        label { display: block; text-align: left; margin: 10px 0 5px; }
+        input { margin: 5px 0 15px; padding: 8px; width: 90%; border: 1px solid #ccc; border-radius: 5px; }
+        button { background: #007BFF; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Calcular Volumen de un Cilindro</h2>
+        <form action="{% url 'cilindro' %}" method="post">
+            {% csrf_token %}
+            <label for="radio">Radio:</label>
+            <input type="number" step="any" name="radio" id="radio" required>
+
+            <label for="altura">Altura:</label>
+            <input type="number" step="any" name="altura" id="altura" required>
+
+            <button type="submit">Calcular</button>
+        </form>
+    </div>
+</body>
+</html>

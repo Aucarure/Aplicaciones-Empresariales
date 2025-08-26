@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Calculadora</title>
+    <style>
+        body { font-family: Arial, 
+            sans-serif; background: #f3f3f3; 
+            text-align: center; }
+        .container { margin: 50px auto; 
+            padding: 20px; 
+            background: white; 
+            border-radius: 8px; 
+            width: 400px; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+        h2 { color: #333; }
+        form { margin-top: 20px; }
+        input, select { margin: 10px 0; 
+            padding: 8px; 
+            width: 90%; }
+        input[type="submit"] { background: #007BFF; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            border-radius: 5px; }
+        input[type="submit"]:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Calculadora Básica</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Calcular">
+        </form>
+    </div>
+</body>
+</html>
