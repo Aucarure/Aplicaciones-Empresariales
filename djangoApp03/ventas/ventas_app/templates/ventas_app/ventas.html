@@ -1,0 +1,9 @@
+<h1>Lista de Ventas</h1>
+<ul>
+  {% for v in ventas %}
+    <li>{{ v.numero_factura }} - Cliente: {{ v.cliente.nombre }} - Monto: {{ v.monto_final }}</li>
+  {% empty %}
+    <li>No hay ventas registradas</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'ventas_app:index' %}">Volver al inicio</a>

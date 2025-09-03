@@ -1,0 +1,9 @@
+<h1>Lista de Productos</h1>
+<ul>
+  {% for p in productos %}
+    <li>{{ p.nombre }} - Precio: {{ p.precio_actual }} - Stock: {{ p.stock }}</li>
+  {% empty %}
+    <li>No hay productos registrados</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'ventas_app:index' %}">Volver al inicio</a>

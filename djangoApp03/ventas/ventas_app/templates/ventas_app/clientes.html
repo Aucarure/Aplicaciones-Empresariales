@@ -1,0 +1,9 @@
+<h1>Lista de Clientes</h1>
+<ul>
+  {% for c in clientes %}
+    <li>{{ c.nombre }} - Código: {{ c.codigo }}</li>
+  {% empty %}
+    <li>No hay clientes registrados</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'ventas_app:index' %}">Volver al inicio</a>
