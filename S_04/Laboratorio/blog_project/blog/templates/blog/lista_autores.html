@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Autores</title>
+    <style>
+        /* Fuente elegante */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ede0d4, #e6ccb2);
+            margin: 0;
+            padding: 0;
+            color: #2c2c2c;
+        }
+
+        header {
+            background: #5d4037;
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        li {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        }
+
+        li:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        li h2 {
+            margin: 0;
+            font-size: 1.3rem;
+            color: #5d4037;
+        }
+
+        li p {
+            margin: 8px 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        a {
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #5d4037;
+            transition: color 0.3s;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        a:hover {
+            color: #3e2723;
+        }
+
+        .empty {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #555;
+            grid-column: 1 / -1;
+        }
+
+        footer {
+            margin-top: 80px;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.95rem;
+            color: #444;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌟 Autores del Blog</h1>
+    </header>
+
+    <div class="container">
+        <ul>
+            {% for autor in autores %}
+                <li>
+                    <h2>✍️ {{ autor.nombre }}</h2>
+                    {% if autor.profesion %}
+                        <p><strong>Profesión:</strong> {{ autor.profesion }}</p>
+                    {% endif %}
+                    {% if autor.bio %}
+                        <p>{{ autor.bio|truncatewords:15 }}</p>
+                    {% endif %}
+                    <a href="{% url 'entradas_por_autor' autor.id %}">📚 Ver entradas</a>
+                </li>
+            {% empty %}
+                <p class="empty">🚫 No hay autores disponibles.</p>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <footer>
+        <p>Proyecto - Blog © 2025</p>
+    </footer>
+</body>
+</html>

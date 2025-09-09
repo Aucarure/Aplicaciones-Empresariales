@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Entradas de {{ autor.nombre }}</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ede0d4, #e6ccb2);
+            margin: 0;
+            padding: 0;
+            color: #2c2c2c;
+        }
+
+        header {
+            background: #5d4037;
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.3rem;
+            letter-spacing: 1px;
+        }
+
+        .autor-info {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+        }
+
+        .autor-info h2 {
+            margin-top: 0;
+            font-size: 1.6rem;
+            color: #5d4037;
+        }
+
+        .autor-info p {
+            margin: 8px 0;
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        .autor-info a {
+            color: #5d4037;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .autor-info a:hover {
+            color: #3e2723;
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        li {
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        }
+
+        li:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            color: #5d4037;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #444;
+        }
+
+        .meta {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        .categoria {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            background: #f0d9c8;
+            color: #5d4037;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        a.volver {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            color: #5d4037;
+            transition: color 0.3s;
+        }
+
+        a.volver:hover {
+            color: #3e2723;
+        }
+
+        footer {
+            margin-top: 80px;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.95rem;
+            color: #444;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📚 Entradas de {{ autor.nombre }}</h1>
+    </header>
+
+    <!-- Info del Autor -->
+    <div class="autor-info">
+        <h2>👤 {{ autor.nombre }}</h2>
+        {% if autor.profesion %}
+            <p><strong>Profesión:</strong> {{ autor.profesion }}</p>
+        {% endif %}
+        {% if autor.bio %}
+            <p><strong>Biografía:</strong> {{ autor.bio }}</p>
+        {% endif %}
+        {% if autor.redes_sociales %}
+            <p><strong>Redes Sociales:</strong> <a href="{{ autor.redes_sociales }}" target="_blank">Perfil</a></p>
+        {% endif %}
+    </div>
+
+    <!-- Lista de Entradas -->
+    <div class="container">
+        <ul>
+            {% for entrada in entradas %}
+                <li>
+                    <h2>{{ entrada.titulo }}</h2>
+                    <p>{{ entrada.contenido|truncatewords:40 }}</p>
+                    {% if entrada.categoria %}
+                        <div class="categoria">📂 {{ entrada.categoria }}</div>
+                    {% endif %}
+                    <div class="meta">
+                        📅 Publicado el: {{ entrada.fecha_publicacion|date:"d M Y" }}
+                    </div>
+                </li>
+            {% empty %}
+                <p class="empty">🚫 No hay entradas para este autor.</p>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'lista_autores' %}" class="volver">← Volver a autores</a>
+    </div>
+
+    <footer>
+        <p>Proyecto - Blog © 2025</p>
+    </footer>
+</body>
+</html>
